@@ -1,0 +1,11 @@
+name: Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y python3-gi python3-cairo python3-gi-cairo python3-pil gir1.2-gtk-3.0
+      - name: Run tests
+        run: /usr/bin/python3 -m unittest discover -s tests -v
